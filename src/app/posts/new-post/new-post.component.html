@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+     <h3 class="text-theme-center">Add New Post</h3>
+      <p class="mb-5">You can add a new post</p>
+    </div>
+  </div>
+  <form action="">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="card shadow">
+          <div class="card-body">
+
+            <div class="form-group">
+              <label for="">Title</label>
+              <input type="text" class="form-control" (keyup)="onTitleChange($event)">
+            </div>
+
+            <div class="form-group">
+              <label for="">Permalink</label>
+              <input type="text" [(ngModel)]="permalink" name="permalink" disabled class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label for="">Excerpt</label>
+              <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <label for="">Please select a category</label>
+          <select  class="form-control">
+            <option value="" disabled>Please select a category</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="">Post Image</label>
+          <img [src]="imgSrc" class="img-fluid form-control" alt="">
+          <input type="file" accept="image/*" class="form-control">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row mt-5 mb-7">
+      <div class="col-md-12">
+        <div class="card shadow">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="">Content</label>
+              <textarea name="" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12 text-center mt-5 mb-5">
+        <button class="btn btn-info bg-theme">Save Post</button>
+        <button class="btn btn-warning " style="margin-left: 1em" routerLink="/posts">Back to Post</button>
+      </div>
+
+    </div>
+  </form>
+</div>

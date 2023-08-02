@@ -8,7 +8,6 @@ import {NewPostComponent} from "./posts/new-post/new-post.component";
 const routes: Routes = [
   {path: 'categories', component: CategoriesComponent},
   {path: '', component: DashboardComponent},
-  {path: '**', component: DashboardComponent},
   {path: 'posts', component: AllPostsComponent},
   {path: 'posts/new', component: NewPostComponent}
 ];
