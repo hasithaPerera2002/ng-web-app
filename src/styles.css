@@ -1,1 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import "~ngx-toastr/toastr";
+
+:root {
+  --primary: #026467;
+  --secondary: #E5F5EA;
+  --body: #596392;
+  --footer: #F9F9F9
+}
+
+p {
+  color: var(--primary);
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  color: var(--body);
+}
+
+.site-logo {
+  padding: 5px 20px;
+  border-radius: 20px;
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+.bg-theme {
+  background-color: var(--primary);
+}
+
+.shadow {
+  border: none;
+  box-shadow: 0px 0px 30px -5px rgba(71, 114, 254, 0.5);
+}
+
+.btn-theme {
+  height: 58px;
+  border: none;
+  font-size: 13px;
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+.bg-secondary-theme {
+  background-color: var(--secondary);
+}
+
+.text-theme-primary {
+  color: var(--primary);
+}
+
+input[text], input[email] {
+  height: 60px !important;
+  padding-left: 20px;
+  font-size: 13px;
+  width: 100%;
+}
