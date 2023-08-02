@@ -5,7 +5,7 @@
       <p class="mb-5">You can add a new post</p>
     </div>
   </div>
-  <form action="">
+  <form (ngSubmit)="onSubmit()" [formGroup]="postForm">
     <div class="row">
       <div class="col-md-7">
         <div class="card shadow">
@@ -13,17 +13,42 @@
 
             <div class="form-group">
               <label for="">Title</label>
-              <input type="text" class="form-control" (keyup)="onTitleChange($event)">
+              <input (keyup)="onTitleChange($event)"
+                     [ngClass]="{'is-invalid':fc['title'].touched && fc['title'].invalid}" class="form-control"
+                     formControlName="title" type="text">
+              <div *ngIf="fc['title'].errors?.['required']">
+                <div *ngIf="fc['title'].touched && fc['title'].invalid" class="alert alert-danger">Title required</div>
+              </div>
+              <div *ngIf="fc['title'].errors?.['minlength']">
+                <div *ngIf="fc['title'].touched && fc['title'].invalid" class="alert alert-danger">Title must be atleast
+                  5 characters
+                </div>
+              </div>
             </div>
 
             <div class="form-group">
               <label for="">Permalink</label>
-              <input type="text" [(ngModel)]="permalink" name="permalink" disabled class="form-control">
+              <input [ngModel]="permalinkModel" class="form-control" formControlName="permalink" name="permalink"
+                     type="text">
+              <div *ngIf="fc['permalink'].errors?.['required']">
+                <div class="alert alert-danger">Tittle reqiured</div>
+              </div>
             </div>
 
             <div class="form-group">
               <label for="">Excerpt</label>
-              <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+              <textarea [ngClass]="{'is-invalid':fc['excerpt'].touched && fc['excerpt'].invalid}" class="form-control"
+                        cols="30" formControlName="excerpt" id="" name="" rows="10"></textarea>
+              <div *ngIf="fc['excerpt'].errors?.['required']">
+                <div *ngIf="fc['excerpt'].touched && fc['excerpt'].invalid" class="alert alert-danger">Excerpt is
+                  required
+                </div>
+              </div>
+              <div *ngIf="fc['excerpt'].errors?.['minlength']">
+                <div *ngIf="fc['excerpt'].touched && fc['excerpt'].invalid" class="alert alert-danger">Excerpt must be
+                  atleast 10 characters
+                </div>
+              </div>
             </div>
 
           </div>
@@ -32,15 +57,28 @@
       <div class="col-md-5">
         <div class="form-group">
           <label for="">Please select a category</label>
-          <select  class="form-control">
+          <select [ngClass]="{'is-valid':fc['category'].valid,'is-invalid':fc['category'].invalid}" class="form-control"
+                  formControlName="category">
             <option value="" disabled>Please select a category</option>
           </select>
+          <div *ngIf="fc['category'].errors?.['required']">
+            <div *ngIf="fc['category'].touched && fc['category'].invalid" class="alert alert-danger">Category is
+              required
+            </div>
+          </div>
         </div>
 
         <div class="form-group">
           <label for="">Post Image</label>
-          <img [src]="imgSrc" class="img-fluid form-control" alt="">
-          <input type="file" accept="image/*" class="form-control">
+          <img [src]="imgSrc" alt="image" class="img-fluid form-control img-preview">
+          <input (change)="showPreview($event)"
+                 [ngClass]="{'is-valid':fc['postImage'].valid,'is-invalid':fc['postImage'].invalid}" accept="image/*"
+                 class="form-control" formControlName="postImage" type="file">
+          <div *ngIf="fc['postImage'].errors?.['required']">
+            <div *ngIf="fc['postImage'].touched && fc['postImage'].invalid" class="alert alert-danger">Image is
+              required
+            </div>
+          </div>
         </div>
 
       </div>
@@ -52,14 +90,19 @@
           <div class="card-body">
             <div class="form-group">
               <label for="">Content</label>
-              <textarea name="" cols="30" rows="10" class="form-control"></textarea>
+              <angular-editor formControlName="content" placeholder="Add Your Content Here"></angular-editor>
+              <div *ngIf="fc['content'].errors?.['required']">
+                <div *ngIf="fc['content'].touched && fc['content'].invalid" class="alert alert-danger">Excerpt is
+                  required
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="col-md-12 text-center mt-5 mb-5">
-        <button class="btn btn-info bg-theme">Save Post</button>
+        <button [disabled]="postForm.invalid" class="btn btn-info bg-theme">Save Post</button>
         <button class="btn btn-warning " style="margin-left: 1em" routerLink="/posts">Back to Post</button>
       </div>
 

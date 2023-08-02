@@ -11,6 +11,9 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {CategoriesComponent} from './categories/categories.component';
 import {AllPostsComponent} from './posts/all-posts/all-posts.component';
 import {NewPostComponent} from './posts/new-post/new-post.component';
+import {AngularEditorModule} from "@kolkov/angular-editor";
+import {HttpClientModule} from "@angular/common/http";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import {NewPostComponent} from './posts/new-post/new-post.component';
     AppRoutingModule,
     FormsModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularEditorModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
