@@ -9,14 +9,24 @@ import {ToastrService} from "ngx-toastr";
 })
 export class CategoriesService {
 
-  constructor(private toastr :ToastrService) { }
+  constructor(private toastr: ToastrService) {
+  }
 
-  saveData(data : Category) {
+  loadData() {
+
+  }
+
+  saveData(data: Category) {
     console.log(data);
     this.toastr.success("Data Saved Successfully");
   }
-  updateData(data : Category) {
+
+  updateData(data: Category) {
     console.log(data);
     this.toastr.success("Data Updated Successfully");
+  }
+
+  loadOneData(id: string) {
+
   }
 }

@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {CategoriesService} from "../../services/categories.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Post} from "../../models/post";
+import {ActivatedRoute, Route} from "@angular/router";
+import {PostService} from "../../services/post.service";
 
 @Component({
   selector: 'app-new-post',
@@ -14,9 +16,9 @@ export class NewPostComponent {
   imgSrc: any = './assets/placeholder-image.png';
   selectedImage: any;
   postForm: FormGroup;
+  formStatus: string = 'New';
 
-
-  constructor(private categoriesService: CategoriesService, private fb: FormBuilder) {
+  constructor(private categoriesService: CategoriesService, private fb: FormBuilder, private route: ActivatedRoute, private postService: PostService) {
     this.postForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(5)]],
       permalink: ['', Validators.required],
@@ -26,6 +28,20 @@ export class NewPostComponent {
       content: ['', Validators.required],
     })
     this.postForm.get('permalink')?.disable();
+    this.route.queryParams.subscribe((val) => {
+      this.postService.loadOneData(val['id']).subscribe(val => {
+        this.postForm = this.fb.group({
+          title: [val.title, [Validators.required, Validators.minLength(5)]],
+          permalink: [val.permalink, Validators.required],
+          excerpt: [val.excerpt, [Validators.required, Validators.minLength(10)]],
+          category: [val.category, Validators.required],
+          postImage: [val.postImage, Validators.required],
+          content: [val.content, Validators.required],
+        })
+        this.formStatus = 'Edit';
+      })
+      console.log(val);
+    })
   }
 
   get fc() {

@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center">
-     <h3 class="text-theme-center">Add New Post</h3>
-      <p class="mb-5">You can add a new post</p>
+      <h3 class="text-theme-center">{{formStatus}} Post</h3>
+      <p class="mb-5">You can {{formStatus}} post</p>
     </div>
   </div>
   <form (ngSubmit)="onSubmit()" [formGroup]="postForm">
@@ -102,7 +102,7 @@
       </div>
 
       <div class="col-md-12 text-center mt-5 mb-5">
-        <button [disabled]="postForm.invalid" class="btn btn-info bg-theme">Save Post</button>
+        <button [disabled]="postForm.invalid" class="btn btn-info bg-theme">{{formStatus}} Post</button>
         <button class="btn btn-warning " style="margin-left: 1em" routerLink="/posts">Back to Post</button>
       </div>
 
